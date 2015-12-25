@@ -13,7 +13,8 @@ function config($stateProvider, $urlRouterProvider) {
       url: '/profile',
       views: {
         'tab-profile': {
-          templateUrl: 'client/templates/profile.html'
+          templateUrl: 'client/templates/profile.html',
+          controller: 'ProfileCtrl as profile'
         }
       }
     })
