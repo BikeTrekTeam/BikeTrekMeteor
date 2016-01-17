@@ -1,7 +1,8 @@
 angular
   .module('Biketrek', [
     'angular-meteor',
-    'ionic'
+    'ionic',
+    'accounts.ui'
   ]);
  
 if (Meteor.isCordova) {

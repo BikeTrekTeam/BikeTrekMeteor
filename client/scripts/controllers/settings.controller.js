@@ -10,9 +10,8 @@ function SettingsCtrl($scope, $reactive, $state) {
   ////////////
  
   function logout() {
-    alert("I AM LOGGING OUT");
     Meteor.logout((err) => {
-      if (!err) return;
+      if (err) return;
       $state.go('login');
     });
   }

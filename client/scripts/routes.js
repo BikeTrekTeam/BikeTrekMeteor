@@ -7,14 +7,25 @@ function config($stateProvider, $urlRouterProvider) {
     .state('tab', {
       url: '/tab',
       abstract: true,
-      templateUrl: 'client/templates/tabs.html'
+      templateUrl: 'client/templates/tabs.html',
+      resolve: {
+        user: isAuthorized
+      }
+    })
+    .state('login', {
+      url: '/login',
+      templateUrl: 'client/templates/login.html',
+      controller: 'LoginCtrl as logger'
     })
     .state('tab.profile', {
       url: '/profile',
       views: {
         'tab-profile': {
           templateUrl: 'client/templates/profile.html',
-          controller: 'ProfileCtrl as profile'
+          controller: 'ProfileCtrl as profile',
+          resolve: {
+            user: isAuthorized
+          }
         }
       }
     })
@@ -45,4 +56,17 @@ function config($stateProvider, $urlRouterProvider) {
     });
  
   $urlRouterProvider.otherwise('tab/training');
+
+  ////////////
+
+  function isAuthorized($q) {
+    let deferred = $q.defer();
+
+    if (_.isEmpty(Meteor.user()))
+      deferred.reject('AUTH_REQUIRED');
+    else
+      deferred.resolve();
+
+    return deferred.promise;
+  }
 }

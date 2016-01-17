@@ -20,3 +20,5 @@ angular
 driftyco:ionic
 fourseven:scss
 accounts-facebook
+accounts-password
+dotansimha:accounts-ui-angular
